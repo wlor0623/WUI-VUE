@@ -1,15 +1,23 @@
 import Vue from 'vue'; //vue
 import VueRouter from 'vue-router'; //路由
-import store from "./store.js";
+import store from "@/store.js";
 
 Vue.use(VueRouter); //挂载路由
 
 // 定义路由规则
 const routes = [{
   path: '/',
-  component: resolve => require(['./views/index.vue'], resolve),
-
-
+  component: resolve => require(['@/views/index.vue'], resolve),
+  children: [
+    {
+      path: '/lottie',
+      component: resolve => require(['@/views/lottie.vue'], resolve),
+    },
+    {
+      path: '/input',
+      component: resolve => require(['@/views/input.vue'], resolve),
+    }
+  ]
 },
 ];
 

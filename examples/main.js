@@ -5,8 +5,13 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-import Vinput from './../packages/index.js';
+// lottie动画
+import lottie from 'vue-lottie';
+Vue.component('lottie', lottie)
+
+import Vinput from '~/index.js'
 Vue.use(Vinput)
+
 
 require('@/init.js')
 new Vue({

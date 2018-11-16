@@ -18,7 +18,6 @@
 <script>
 export default {
   name: "Vinput",
-  // inheritAttrs: false,
   data() {
     return {
       currentValue:
@@ -66,10 +65,7 @@ export default {
       type: [String],
       default: null
     },
-    prependWidth: {
-      type: [String],
-      default: null
-    },
+
     autofocus: {
       type: Boolean,
       default: false
@@ -120,6 +116,8 @@ export default {
             e.target.value = e.target.value.replace(/[a-zA-Z]/g, "");
             break;
           case "pureNumber":
+            console.log(e);
+
             e.target.value = e.target.value.replace(/[a-zA-Z.]/g, "");
             break;
           case "letter":
@@ -207,6 +205,13 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 .wlor-input {
   position: relative;
   display: flex;
@@ -217,6 +222,10 @@ export default {
   box-sizing: border-box;
   &.wlor-prepend {
     padding: 0px 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     > .prepend-icon {
       height: 45px;
       line-height: 45px;
@@ -231,7 +240,11 @@ export default {
   }
 
   &.wlor-append {
-       padding: 0px 5px;
+    padding: 0px 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     > .append-icon {
       height: 45px;
       line-height: 45px;

@@ -6,10 +6,12 @@
 #app {
   -webkit-overflow-scrolling: touch;
 }
+html,
 body {
   overflow: auto;
   touch-action: none;
   -webkit-overflow-scrolling: touch;
+  height: 100%;
 }
 /*行内块元素*/
 input,
@@ -48,6 +50,10 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+ul,
+ol {
+  list-style: none;
+}
 /* 使用伪元素清除浮动 */
 .clearfix::before,
 .clearfix::after {
@@ -60,4 +66,17 @@ table {
 }
 .clearfix {
   *zoom: 1;
+}
+.table {
+  width: 100%;
+  text-align: center;
+}
+.table tr {
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #ccc;
+}
+.container,
+.page-container {
+  width: auto;
 }

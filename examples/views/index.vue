@@ -1,9 +1,13 @@
 <template>
   <section id='index'>
-    <Vinput maxlength="8"></Vinput>
+    <side></side>
+    <div class="pageContent">
+      <router-view />
+    </div>
   </section>
 </template>
 <script>
+import side from "@/components/side";
 export default {
   name: "",
   data() {
@@ -16,22 +20,21 @@ export default {
   //渲染后
   mounted() {},
   //方法
-  methods: {
-    alert() {
-      this.$alert("新内容是是是是");
-    },
-    sheet() {
-      this.$sheet(["关闭", "开启", "曲潇"], function(index, item) {
-        console.log(index, item);
-      });
-    },
-    toast() {
-      this.$toast("新内容是是是是");
-    }
-  },
+  methods: {},
   //组件
-  components: {}
+  components: {
+    side,
+  }
 };
 </script>
 <style lang='less' scoped>
+#index{
+  height: 100%;
+}
+.pageContent{
+  padding-left: 220px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  height: 100%;
+}
 </style>
