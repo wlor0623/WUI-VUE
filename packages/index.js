@@ -1,18 +1,21 @@
-// 导入颜色选择器组件
-import Vinput from './input'
 
-// 存储组件列表
-const components = [
-  Vinput
-]
-
-// 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
+import Vinput from './input';
+import {
+  Alert,
+  Confirm,
+  Toast,
+  Sheet,
+} from './dialog'
+// 挂载
 const install = function (Vue) {
-  // 判断是否安装
-  if (install.installed) return
-  // 遍历注册全局组件
-  components.map(component => Vue.component(component.name, component))
-}
+  Vue.component(Vinput.name, Vinput);
+  Vue.prototype.$dialog = {
+    confirm: Confirm,
+    alert: Alert,
+    toast: Toast,
+    sheet: Sheet,
+  };
+};
 
 // 判断是否是直接引入文件
 if (typeof window !== 'undefined' && window.Vue) {

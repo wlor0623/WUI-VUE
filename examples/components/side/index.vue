@@ -7,6 +7,9 @@
        <li>
         <router-link to="/input">input 输入框</router-link>
       </li>
+      <li>
+        <router-link to="/dialog">dialog 弹框</router-link>
+      </li>
     </ul>
   </section>
 </template>

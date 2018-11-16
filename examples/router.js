@@ -16,6 +16,10 @@ const routes = [{
     {
       path: '/input',
       component: resolve => require(['@/views/input.vue'], resolve),
+    },
+    {
+      path: '/dialog',
+      component: resolve => require(['@/views/dialog.vue'], resolve),
     }
   ]
 },

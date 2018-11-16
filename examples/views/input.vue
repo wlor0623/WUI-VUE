@@ -4,7 +4,7 @@
     <br><p>正常输入框</p>
     <br>
     <code class="hljs language-html">
-      &lt;Vinput type=&quot;text&quot; maxlength=&quot;5&quot;&gt;&lt;/Vinput&gt;</code>
+      &lt;Vinput type=&quot;text&quot;&gt;&lt;/Vinput&gt;</code>
     <div class="source">
       <Vinput type="text" placeholder="正常输入框"></Vinput>
     </div>
