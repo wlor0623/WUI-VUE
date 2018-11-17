@@ -1,18 +1,14 @@
 <template>
   <transition name='fade'>
-    <section class="confirm" v-if="showConfirm">
-      <div class="mui-popup mui-popup-in bounceIn">
-        <div class="mui-popup-inner">
-          <div class="mui-popup-title">{{title}}</div>
-          <div class="mui-popup-text">
-            <slot>
-              <p>{{message}}</p>
-            </slot>
-          </div>
+    <section class="ui-dialog" v-if="showConfirm">
+      <div class="ui-dialog-cnt">
+        <div class="ui-dialog-bd">
+          <h3>{{title}}</h3>
+          <p>{{message}}</p>
         </div>
-        <div class="mui-popup-buttons">
-          <span class="mui-popup-button" @click.stop="sureConfirm">确定</span>
-          <span class="mui-popup-button" @click.stop="closeConfirm">取消</span>
+        <div class="ui-dialog-ft">
+          <button type="button" data-role="button" @click.stop="sureConfirm">{{confirmTxt}}</button>
+          <button type="button" data-role="button" class="btn-recommand" @click.stop="closeConfirm">{{cancelTxt}}</button>
         </div>
       </div>
     </section>
@@ -23,17 +19,12 @@ export default {
   name: "alert",
   data() {
     return {
-      showConfirm: false
+      showConfirm: false,
+      title: "提示",
+      message: "",
+      confirmTxt: "确定",
+      cancelTxt: "取消"
     };
-  },
-  props: {
-    title: {
-      type: String,
-      default: "提示"
-    },
-    message: {
-      type: String
-    }
   },
   methods: {}
 };
@@ -42,7 +33,7 @@ export default {
 <style scoped lang='less'>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.4s;
 }
 .fade-enter,
 .fade-leave-to {
@@ -87,97 +78,130 @@ export default {
   -webkit-animation-name: bounceIn;
   animation-name: bounceIn;
 }
-.confirm {
+.ui-dialog {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1000;
-  transition: all 0.6s;
-}
-.mui-popup.mui-popup-in {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 10000;
-  max-width: 270px;
-  width: 70%;
-  overflow: hidden;
-  color: #000;
-  text-align: center;
-  border-radius: 13px;
-  transition: all 0.6s;
-  -webkit-transform: translate3d(-50%, -50%, 0) scale(1);
-  transform: translate3d(-50%, -50%, 0) scale(1);
-}
-.mui-popup-inner {
-  position: relative;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 13px 13px 0 0;
-}
-.mui-popup-title {
-  font-size: 18px;
-  font-weight: 500;
-  text-align: center;
-}
-.mui-popup-title + .mui-popup-text {
-  margin: 10px 0 0;
-  font-family: inherit;
-  font-size: 14px;
-}
-.mui-popup-inner:after {
-  position: absolute;
-  top: auto;
-  right: auto;
-  bottom: 0;
-  left: 0;
-  z-index: 15;
-  display: block;
+  top: 0px;
+  left: 0px;
   width: 100%;
-  height: 1px;
-  content: "";
-  background-color: #ececed;
-}
-.mui-popup-buttons {
-  position: relative;
+  height: 100%;
+  z-index: 9999;
   display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  height: 44px;
+  -webkit-box-orient: horizontal;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-}
-.mui-popup-button:first-child:last-child {
-  border-radius: 0 0 13px 13px;
+  -webkit-box-align: center;
+  background: rgba(0, 0, 0, 0.4);
 }
 
-.mui-popup-button {
+.ui-dialog-cnt {
+  border-radius: 10px;
+  max-width: 296px;
+  width: 90%;
+  -webkit-background-clip: padding-box;
+  pointer-events: auto;
+  background-color: #fff;
   position: relative;
-  display: block;
-  width: 100%;
-  height: 44px;
-  box-sizing: border-box;
-  padding: 0 5px;
-  overflow: hidden;
-  font-size: 17px;
-  line-height: 44px;
-  color: #007aff;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.95);
-  -webkit-box-flex: 1;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  &:first-child {
-    border-right: 1px solid #ececed;
+  -webkit-box-sizing: border-box;
+  color: #000;
+  .ui-dialog-bd {
+    min-height: 46px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 18px 28px 18px 28px;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-box-orient: vertical;
+    > p {
+      font-size: 16px;
+      width: auto;
+      margin: 2px auto;
+    }
   }
+}
+.ui-dialog-bd h2,
+.ui-dialog-bd h3 {
+  font-size: 20px;
+  width: auto;
+  margin: 1px auto 5px;
+  font-weight: normal;
+}
+.ui-dialog-ft {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  display: -webkit-box;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-align: center;
+  border-top: 1px solid #e9e9e9;
+  height: 45px;
+  line-height: 45px;
+}
+.ui-dialog-ft button:first-child:nth-last-child(2) {
+  position: relative;
+}
+.ui-dialog-ft button:first-child {
+  border-bottom-left-radius: 3px;
+}
+.ui-dialog-ft button:last-child {
+  border-bottom-right-radius: 3px;
+}
+.ui-dialog-ft button {
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  line-height: 45px;
+  display: block;
+  margin: 0;
+  -webkit-box-flex: 1;
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .ui-dialog-ft {
+    position: relative;
+    border: 0;
+    background-position: left top;
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.5, transparent),
+      color-stop(0.5, #e9e9e9)
+    );
+    background-repeat: repeat-x;
+    -webkit-background-size: 100% 1px;
+  }
+  .ui-dialog-ft button:first-child:nth-last-child(2):after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 1px;
+    height: 100%;
+    border-right: 0;
+    background-position: right top;
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(0.5, transparent),
+      color-stop(0.5, #e9e9e9)
+    );
+    background-repeat: repeat-y;
+    -webkit-background-size: 1px 100%;
+  }
+}
+.ui-dialog-ft button:first-child:nth-last-child(2):after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 1px;
+  height: 100%;
+  border-right: 1px #e9e9e9 solid;
 }
 </style>

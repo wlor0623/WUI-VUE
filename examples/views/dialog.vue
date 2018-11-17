@@ -4,10 +4,21 @@
     <br>
     <p>alert</p>
     <br>
-    <code class="hljs language-html">
-      this.$dialog.alert(&#x27;我是alert弹框&#x27;)</code>
+    <p>基础应用</p>
+    <code class="hljs language-html">this.$dialog.alert(&#x27;哈哈&#x27;);</code>
+    <br>
+    <p>扩展应用</p>
+    <code class="hljs language-html"> this.$dialog.alert({
+      title:&#x27;温馨提示&#x27;,
+      message:&#x27;我是扩展内容&#x27;,
+      confirmTxt:&#x27;好的&#x27;,
+      callback: () =&gt;{
+      alert(&#x27;我是回调内容&#x27;)
+      }
+      });</code>
     <div class="source">
       <button @click="alert">alert</button>
+      <button @click="moreAlert">扩展alert</button>
     </div>
     <br>
     <p>toast</p>
@@ -21,7 +32,17 @@
     <p>confirm</p>
     <br>
     <code class="hljs language-html">
-      this.$dialog.confirm(&#x27;我是confirm&#x27;)</code>
+      this.$dialog.confirm({
+        title: &quot;确定框&quot;,
+        message: &quot;我是confirm内容&quot;,
+        confirmTxt: &quot;好的&quot;,
+        callback: () =&gt; {
+          alert(&quot;成功&quot;);
+        },
+        cancelCallback:()=&gt;{
+          alert(&#x27;取消&#x27;)
+        }
+      });</code>
     <div class="source">
       <button @click="confirm">confirm</button>
     </div>
@@ -50,16 +71,36 @@ export default {
   //方法
   methods: {
     alert() {
-      this.$dialog.alert("我是alert弹框");
+      this.$dialog.alert("哈哈");
+    },
+    moreAlert() {
+      this.$dialog.alert({
+        title: "温馨提示",
+        message: "我是扩展内容",
+        confirmTxt: "好的",
+        callback: () => {
+          alert("我是回调内容");
+        }
+      });
     },
     toast() {
       this.$dialog.toast("我是toast");
     },
     confirm() {
-      this.$dialog.confirm("我是confirm");
+      this.$dialog.confirm({
+        title: "确定框",
+        message: "我是confirm内容",
+        confirmTxt: "好的",
+        callback: () => {
+          alert("成功");
+        },
+        cancelCallback:()=>{
+          alert('取消')
+        }
+      });
     },
     sheet() {
-      this.$dialog.sheet(['选项1','选项2']);
+      this.$dialog.sheet(["选项1", "选项2"]);
     }
   },
   //组件

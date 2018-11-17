@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+:focus{
+  outline: 0;
+}
 #app{
   -webkit-overflow-scrolling: touch;//消除移动端页面上下滚动时卡顿
 }
@@ -55,6 +58,11 @@ table{
 ul,ol{
   list-style: none;
 }
+button{
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  }
 
 /* 使用伪元素清除浮动 */
 .clearfix::before,

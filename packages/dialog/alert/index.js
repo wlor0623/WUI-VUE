@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Alert from './src/alert.vue'; //引入组件 
 let AlertConstructor = Vue.extend(Alert); // 返回一个“扩展实例构造器” 
-let callback = null;
 // 锁屏
 const pageScroll = (function () {
   const fn = function (e) {
@@ -27,12 +26,18 @@ const alertDom = new AlertConstructor({
   el: document.createElement('div')
 });
 // 生成弹窗
-let myAlert = (text, sureCallback) => {
+let myAlert = (option = {}) => {
+  if (typeof option === 'string') {
+    alertDom.message = option;
+  } else {
+    alertDom.message = option.message;
+    alertDom.confirmTxt = option.confirmTxt || '确定';
+    alertDom.title = option.title || '提示';
+  }
+  alertDom.callback=option.callback;
+  pageScroll.lock();
   document.body.appendChild(alertDom.$el) //把组件的dom添加到body里 
   alertDom.showAlert = true;
-  alertDom.message = text;
-  callback = sureCallback;
-  pageScroll.lock();
 }
 
 // 关闭弹窗
@@ -42,7 +47,7 @@ AlertConstructor.prototype.closeAlert = function () {
     const el = alertDom.$el;
     el.parentNode && el.parentNode.removeChild(el);
   }, 200);
-  typeof callback === 'function' && callback();
+  typeof this.callback === 'function' && this.callback();
   pageScroll.unlock();
 };
 export default myAlert;
