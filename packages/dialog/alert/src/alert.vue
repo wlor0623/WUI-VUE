@@ -7,7 +7,7 @@
           <p>{{message}}</p>
         </div>
         <div class="ui-dialog-ft">
-          <button type="button" data-role="button" @click.stop="closeAlert">确定</button>
+          <button type="button" data-role="button" @click.stop="closeAlert">{{confirmTxt}}</button>
         </div>
       </div>
     </section>

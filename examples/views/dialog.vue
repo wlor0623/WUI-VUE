@@ -1,6 +1,7 @@
 <template>
   <section id='page-container'>
     <h2 id="switch-kai-guan"> dialog 输入框</h2>
+    <pre>this.$dialog.alert(&#x27;哈哈&#x27;);</pre>
     <br>
     <p>alert</p>
     <br>
@@ -33,15 +34,15 @@
     <br>
     <code class="hljs language-html">
       this.$dialog.confirm({
-        title: &quot;确定框&quot;,
-        message: &quot;我是confirm内容&quot;,
-        confirmTxt: &quot;好的&quot;,
-        callback: () =&gt; {
-          alert(&quot;成功&quot;);
-        },
-        cancelCallback:()=&gt;{
-          alert(&#x27;取消&#x27;)
-        }
+      title: &quot;确定框&quot;,
+      message: &quot;我是confirm内容&quot;,
+      confirmTxt: &quot;好的&quot;,
+      callback: () =&gt; {
+      alert(&quot;成功&quot;);
+      },
+      cancelCallback:()=&gt;{
+      alert(&#x27;取消&#x27;)
+      }
       });</code>
     <div class="source">
       <button @click="confirm">confirm</button>
@@ -53,6 +54,14 @@
       this.$dialog.sheet([&#x27;选项1&#x27;,&#x27;选项2&#x27;]);</code>
     <div class="source">
       <button @click="sheet">sheet</button>
+    </div>
+    <br>
+    <p>operate</p>
+    <br>
+    <code class="hljs language-html">
+      this.$dialog.sheet([&#x27;选项1&#x27;,&#x27;选项2&#x27;]);</code>
+    <div class="source">
+      <button @click="operate">operate</button>
     </div>
   </section>
 </template>
@@ -94,13 +103,26 @@ export default {
         callback: () => {
           alert("成功");
         },
-        cancelCallback:()=>{
-          alert('取消')
+        cancelCallback: () => {
+          alert("取消");
         }
       });
     },
     sheet() {
       this.$dialog.sheet(["选项1", "选项2"]);
+    },
+    operate() {
+      this.$dialog.operate({
+        img:
+          "https://img12.360buyimg.com/jdphoto/jfs/t29062/211/220249678/49352/789242e7/5bebf816Nda7cc1fe.png!q70.webp",
+        title: "使用QQ钱包优惠购",
+        message:
+          "参加天猫运动会，使用QQ钱包购买智能穿戴！分期0首付0手续费，放肆去浪！",
+        confirmTxt: "立即查看",
+        callback: () => {
+          alert("我是回调内容");
+        }
+      });
     }
   },
   //组件

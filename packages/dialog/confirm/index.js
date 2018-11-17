@@ -52,10 +52,10 @@ ConfirmConstructor.prototype.sureConfirm = function () {
 ConfirmConstructor.prototype.closeConfirm = function () {
   pageScroll.unlock();
   confirmDom.showConfirm = false;
+  typeof this.cancelCallback === 'function' && this.cancelCallback();
   setTimeout(() => {
     const el = confirmDom.$el;
     el.parentNode && el.parentNode.removeChild(el);
   }, 400);
-  typeof this.cancelCallback === 'function' && this.cancelCallback();
 };
 export default myConfirm;

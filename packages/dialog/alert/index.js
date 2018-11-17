@@ -34,7 +34,7 @@ let myAlert = (option = {}) => {
     alertDom.confirmTxt = option.confirmTxt || '确定';
     alertDom.title = option.title || '提示';
   }
-  alertDom.callback=option.callback;
+  alertDom.callback = option.callback;
   pageScroll.lock();
   document.body.appendChild(alertDom.$el) //把组件的dom添加到body里 
   alertDom.showAlert = true;
@@ -43,11 +43,11 @@ let myAlert = (option = {}) => {
 // 关闭弹窗
 AlertConstructor.prototype.closeAlert = function () {
   alertDom.showAlert = false;
+  typeof this.callback === 'function' && this.callback();
+  pageScroll.unlock();
   setTimeout(() => {
     const el = alertDom.$el;
     el.parentNode && el.parentNode.removeChild(el);
-  }, 200);
-  typeof this.callback === 'function' && this.callback();
-  pageScroll.unlock();
+  }, 400);
 };
 export default myAlert;

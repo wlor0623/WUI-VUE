@@ -5,6 +5,7 @@ import {
   Confirm,
   Toast,
   Sheet,
+  Operate
 } from './dialog'
 // 挂载
 const install = function (Vue) {
@@ -14,6 +15,7 @@ const install = function (Vue) {
     alert: Alert,
     toast: Toast,
     sheet: Sheet,
+    operate:Operate
   };
 };
 

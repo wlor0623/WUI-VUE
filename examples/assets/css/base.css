@@ -75,6 +75,11 @@ button {
 .clearfix {
   *zoom: 1;
 }
+.ellipsis-2 {
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
 .table {
   width: 100%;
   text-align: center;
